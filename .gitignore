@@ -1,0 +1,11 @@
+nimcache/
+nimblecache/
+htmldocs/
+logo/
+*~
+*.toml
+*.yaml
+*.html
+*.json
+.*
+!.gitignore

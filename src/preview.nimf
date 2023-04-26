@@ -1,0 +1,105 @@
+#?  stdtmpl(subsChar = '$', metaChar = '~') | standard
+~func genHtml*(svgs: openArray[string]): string =
+~  result = ""
+<!DOCTYPE html>
+<html lang="en"> <head> <meta charset=utf-8>
+<title>Catalay preview gallery</title>
+<style>
+	body {
+		font-weight: 600;
+		font-family: Sans-Serif;
+		height: 100%;
+		overflow: hidden;
+		background: #DDD;
+		color: #222;
+		margin: 1vmin;
+		font-size: 2vmin;
+	}
+	p {
+		margin: 0.5em;
+	}
+	#gallery {
+		background-color: #EEE;
+		border: 1px solid #EEE;
+		overflow-x: scroll;
+		scroll-snap-points-x: repeat(100vw);
+		scroll-snap-type: x mandatory;
+		-ms-scroll-snap-type: x mandatory;
+		display: flex;
+		padding-top: 1vh;
+		text-align: center;
+	}
+	#page {
+		will-change: transform;
+		scroll-snap-align: start;
+		padding-right: 1rem;
+	}
+	#page > svg:hover {			
+		-webkit-transform: scale(1.01);
+		-moz-transform: scale(1.01);
+		-ms-transform: scale(1.01);
+		-o-transform: scale(1.01);
+		transform: scale(1.01); 
+		box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 1rem;	
+	}
+	#page > svg {
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0.5rem;
+		background-color: white;
+		max-height: 84vh;
+		width: auto;
+		will-change: transform;
+		transition: transform ease-in-out .3s, box-shadow ease-in-out 0.3s;
+	}
+	#controls {
+		min-height: 4vh;
+		display: flex;
+		padding: 1vh;
+		justify-content: center;
+		align-items: center;
+	}
+	#controls button {
+		font-size: 1em;
+		margin-left: 0.5em;
+		margin-right: 0.5em;
+		width: 8em;
+		height: 2em;
+	}
+	#logo > svg {
+		height: 5vh;
+		margin-right: 2em;
+	}
+</style>
+<body>
+<noscript>This web application requires JavaScript to function.</noscript>
+<div id="gallery">
+  ~for i, svg in svgs:
+  <div id="page">${svg}<p>${i+1}</p></div>
+  ~end for
+</div>
+<div id="controls">
+  <div id="logo">${LogoSvg}</div>
+  <button onclick="scrollSet(0)" title="First page [Down key]">⏮</button>
+  <button onclick="scrollH(-1)" title="Previous page [Left arrow]">Left</button>
+  <button onclick="scrollH(1)" title="Next page [Right arrow]">Right</button>
+  <button onclick="scrollSet(1)" title="Last page [Up key]">⏭</button>
+</div>
+</body>
+<script type="text/javascript">
+const gal = document.getElementById("gallery");
+document.onkeydown = handleKey;
+var pageDiv = gal.firstChild;
+while(pageDiv && pageDiv.nodeType !== 1) {
+    pageDiv = pageDiv.nextSibling;
+}
+function scrollH(amt) {gal.scrollBy({left: amt*pageDiv.scrollWidth, behavior: "smooth"});};
+function scrollSet(amt) {gal.scrollTo({left: amt*gal.scrollWidth, behavior: "smooth"});};
+function handleKey(e) {
+    e = e || window.event;
+    switch(e.keyCode){
+      case 38: scrollSet(1); break;
+      case 40: scrollSet(0); break;
+      case 37: scrollH(-1); break;
+      case 39: scrollH(1); break;
+  }
+}
+</script></html>
