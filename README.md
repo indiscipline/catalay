@@ -142,6 +142,6 @@ Catalay and Catalay.jsx are licensed under GNU General Public License version 3.
 
 Adobe InDesign product and logo are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
 
-[^killerfeature]: Why is this useful? Most catalogues represent real world items. Preserving more specifics of their appearance, such as their relative dimensions, in printed media helps users make informed decisions and helps the sales people justifying their pricing policies. 
+[^killerfeature]: Why is this useful? Most catalogues represent real world items. Preserving more specifics of their appearance, such as their relative dimensions, in printed media helps users make informed decisions and helps the sales people justifying their pricing policies.
 
-[^donations]: [Contact me](https://github.com/indiscipline) for now. I'm working on making it easier :)
+[^donations]: There's [a couple of options](https://indiscipline.github.io/about#donations) on author's "About" page.
