@@ -1,0 +1,66 @@
+# Font size for the page title in typographic points
+titleSize: 14
+
+# Font size for the group titles in typographic points
+groupTitleSize: 12
+
+# Font size for item labels in typographic points
+itemLabelSize: 7
+
+# Page dimensions in millimetres, whole positive numbers
+pageSize:
+  width: 148
+  height: 210
+  
+# Marks the beginning of the sequence of pages
+pages:
+
+    # Page title, can be omitted
+    # Dash marks the beginning of the next node (page) in the sequence ("pages")
+  - title: First Page
+  
+    # Marks the beginning of the sequence of groups
+    groups:
+        
+        # Group title, required
+      - title: Things
+      
+        # Item dimensions in millimetres, whole positive numbers
+        itemSize:
+          width: 120
+          height: 80
+          
+        # Items in a group are entered with a multi-line string. This is based on the
+        # assumption the most of the data comes from some kind of spreadsheet,
+        # and allows simply copy-pasting from a CSV file. The required format is:
+        #
+        # Name used for the label, delimiter (either semicolon or tab character), path to the image file
+        #
+        # This allows using Windows paths with backslashes but means no escaping is performed!
+        # In the output file the backslashes will be replaced with a forward slash.
+        #
+        # Note that YAML mandates multiline string to be properly indented!
+        # This is inconvenient, so using TOML instead is advised.
+        items: |
+          This is an item label;C:\folder\image.png
+          Another item;D:\images\42.jpg
+        
+        # Dash marks the beginning of the next node (group) in the sequence ("groups")
+      - title: Items
+        itemSize:
+          width: 75
+          height: 60
+        # This format is possible but irrational.
+        # String is split by the newline markers, trimmed from both ends,
+        # then each part is stripped of the remaining whitespace characters.
+        # Here an escape sequence `\t` (tab character) is used for separating item fields.
+        # Use the previous format!
+        items: "\t\titem1 \t C:\\image1.png\n\t\titem2 \t C:\\image2.png\n\t\titem3 \t C:\\image3.png\n\t"
+  - groups:
+      - title: Other Things
+        itemSize:
+          width: 120
+          height: 40
+        items: |
+          item4;C:\item4.png
+          item5;C:\item5.png
